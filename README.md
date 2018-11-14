@@ -7,9 +7,9 @@ Permet de pinger des URLs et de retourner l'adresse IP sous le format : Domain_N
 * **http_response.sh** permet de récupérer le code http de l'URL (200, 301 etc...) avec curl
 * **whois** permet de récupérer le REGISTRAR uniquement
 
-####Exemples : 
+#### Exemples : 
 
-######Exemples de whois.sh :
+###### Exemples de whois.sh :
 ```
 root@toto:/# bash whois.sh
 perdu.com        whois.dreamhost.com
