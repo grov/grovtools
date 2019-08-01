@@ -6,6 +6,7 @@ Permet de pinger des URLs et de retourner l'adresse IP sous le format : Domain_N
 * **http_response.sh** permet de récupérer le code http de l'URL (200, 301 etc...) avec curl
 * **whois** permet de récupérer le REGISTRAR uniquement
 * **Discoweb** : permet d'obtenir : URL, code http, code https, IP
+* **Discowebv2** : Comme discoweb mais avec l'ajout des protocoles SSL/TLS + les ports ouverts nmap
 
 #### Exemples : 
 
@@ -40,4 +41,12 @@ example.com     93.184.216.34
 root@toto:/# bash discoweb.sh
 perdu.com       301,200,208.97.177.124
 example.com     200,200,93.184.216.34
+```
+###### Exemples de discowebv2.sh :
+```
+root@toto:/# bash discoweb.sh
+perdu.com       301,200,208.97.177.124,SSLv2 not offered (OK),SSLv3 not offered (OK),TLS 1.1 not offered,TLS 1.2 offered (OK),22-80-443-
+
+example.com     200,200,93.184.216.34,SSLv2 not offered (OK),SSLv3 not offered (OK),TLS 1.1 offered,TLS 1.2 offered (OK),22-80-443-8080-
+
 ```
