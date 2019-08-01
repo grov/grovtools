@@ -1,12 +1,13 @@
 #!/bin/bash
 
 #Affichage des colonnes
-echo "URL,code_http,code_https,IP,Whois"
+echo "URL,code_http,code_https,IP,Whois,SSLv2,SSLv3,TLS1.1,TLS1.2,Ports"
 
 #Boucle
 while read url; do
 
 #Variables
+#pour le whois sur kali il faut mettre 3 "\" ici : awk -F "\\\:"
 http=$(curl -o /dev/null --silent -k --head --write-out "%{http_code}" http://"$url")
 https=$(curl -o /dev/null --silent -k --head --write-out "%{http_code}" https://"$url")
 whois=$(whois "$url" | grep -m 1 Registrar | awk -F "\:" '{print $2}')
@@ -15,7 +16,7 @@ SSLv2=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv2/p')
 SSLv3=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv3/p')
 TLS11=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.1/p')
 TLS12=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.2/p')
-nmap=$(nmap -F --open grovabrac.com -oG - | sed -n -e 's/^.*Ports: //p' | grep -E -o "[0-9]+" | tr '\n' ' ')
+nmap=$(nmap -F --open "$url" -oG - | sed -n -e 's/^.*Ports: //p' | grep -E -o "[0-9]+" | tr '\n' ' ')
 
 #Si cellule vide alors mettre none pour eviter les blancs
 if [ -z "$http" ];
