@@ -8,7 +8,7 @@ Permet de pinger des URLs et de retourner l'adresse IP sous le format : Domain_N
 * **Discoweb** : permet d'obtenir : URL, code http, code https, IP
 * **Discowebv2** : Comme discoweb mais avec l'ajout des protocoles SSL/TLS + les ports ouverts nmap
 
-NB : Discowebv2 nécessite [https://testssl.sh/]testssl.sh et nmap.
+NB : Discowebv2 nécessite [testssl.sh](https://testssl.sh) et [nmap](https://nmap.org/).
 
 #### Exemples : 
 
