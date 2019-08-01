@@ -47,7 +47,7 @@ if [ -z "$nmap" ];
         then nmap="none"
 fi
 
-#Echo les commandes separé par une virgule
+#Echo les commandes separées par une virgule
 echo $url | tr "\n" ", "
 echo $http | tr "\n" ", "
 echo $https | tr "\n" ", "
