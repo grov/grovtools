@@ -12,11 +12,11 @@ http=$(curl -o /dev/null --silent -k --head --write-out "%{http_code}" http://"$
 https=$(curl -o /dev/null --silent -k --head --write-out "%{http_code}" https://"$url")
 whois=$(whois "$url" | grep -m 1 Registrar | awk -F ":" '{print $2}')
 ping=$(ping -c 1 "$url" | head -1 | sed 's/.*(\(.*\)).*(\(.*\)).*/\1/')
-SSLv2=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv2/p')
-SSLv3=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv3/p')
-TLS11=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.1/p')
-TLS12=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.2/p')
-TLS13=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.3/p')
+SSLv2=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv2/p' | tail -n +2)
+SSLv3=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv3/p' | tail -n +2)
+TLS11=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.1/p' | tail -n +2)
+TLS12=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.2/p' | tail -n +2)
+TLS13=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.3/p' | tail -n +2)
 nmap=$(nmap -F --open "$url" -oG - | sed -n -e 's/^.*Ports: //p' | grep -E -o "[0-9]+" | tr '\n' ' ')
 
 #Si cellule vide alors mettre none pour eviter les blancs
