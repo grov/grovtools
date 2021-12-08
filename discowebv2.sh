@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Affichage des colonnes
-echo "URL,code_http,code_https,IP,Whois,SSLv2,SSLv3,TLS1.1,TLS1.2,Ports"
+echo "URL,code_http,code_https,IP,Whois,SSLv2,SSLv3,TLS1.1,TLS1.2,TLS1.3,Ports"
 
 #Boucle
 while read url; do
@@ -16,6 +16,7 @@ SSLv2=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv2/p')
 SSLv3=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/SSLv3/p')
 TLS11=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.1/p')
 TLS12=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.2/p')
+TLS13=$(testssl -p "$url" | grep -A 6 "Testing" | sed -n '/TLS 1.3/p')
 nmap=$(nmap -F --open "$url" -oG - | sed -n -e 's/^.*Ports: //p' | grep -E -o "[0-9]+" | tr '\n' ' ')
 
 #Si cellule vide alors mettre none pour eviter les blancs
@@ -42,6 +43,9 @@ if [ -z "$TLS11" ];
 fi
 if [ -z "$TLS12" ];
         then TLS12="none"
+fi
+if [ -z "$TLS13" ];
+        then TLS13="none"
 fi
 if [ -z "$nmap" ];
         then nmap="none"
