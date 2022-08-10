@@ -13,7 +13,7 @@ grep -oe "[a-zA-Z0-9._]\+@[a-zA-Z]\+.[a-zA-Z]\+" $source > email.txt
 sleep 2
 
 # Deuxième partie : récupération des dataleak avec l'API Have i Been Pwned
-echo "Analyse des dataleaks avec Have I Been Pwned :"
+echo "Analyse des dataleaks avec l'API Have I Been Pwned :"
 
 # Lancement du script HIPB2.sh
 bash HIBP.sh > result.txt
