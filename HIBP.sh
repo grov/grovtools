@@ -10,4 +10,4 @@ echo $curl
 #pour eviter le rate limiter de l'api
 sleep 3
 
-done < email.txt
+done < email_unique.txt
