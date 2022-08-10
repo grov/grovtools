@@ -13,10 +13,16 @@ read source
 grep -oE "\b([0-9]{1,3}\.){3}([0-9]{1,3})\b" $source > ip.txt
 echo "*** Parsing des adresses IP du fichier CSV ***"
 
+#Calcul du nombre de ligne avant la suppression des doublons
+echo "*** Nombre de ligne avant suppression des doublons : ***" && cat ip.txt | wc -l
+
 #Suppression des doublons
 echo "*** Suppression des doublons ***"
 sort ip.txt | uniq > ip_unique.txt
 echo "*** Les ips uniques se trouvent dans le fichier ip_unique.txt ***"
+
+#Calcul du nombre de ligne après la suppression des doublons
+echo "*** Nombre de ligne après suppression des doublons : ***" && cat ip_unique.txt | wc -l
 
 # Lancement du script geolocate.py
 echo "*** Lancement du script de localisation ***"
