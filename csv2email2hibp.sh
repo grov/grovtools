@@ -29,6 +29,6 @@ sleep 2
 echo "*** Analyse des dataleaks avec Have I Been Pwned : ***"
 
 # Lancement du script HIPB2.sh
-bash HIBP2.sh > result.txt
+bash HIBP.sh > result.txt
 
 echo "*** Les résultats sont dans le fichier result.txt ***"
