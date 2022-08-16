@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # Copie des anciens fichiers dans le répertoire OLD"
+# Créer les répertoires OLD et total s'ils n'existent pas
+mkdir -p OLD
+mkdir -p total
 echo "*** Copie des anciens fichiers dans le répertoire OLD ***"
 if [ -f email.txt -a -f email_unique.txt -a -f result.txt ]; then
 mv email.txt OLD/email.txt.$(date +%F_%R)
@@ -11,7 +14,7 @@ fi
 # Première partie : Récupération des emails
 echo "*** Récupération des emails dans l'extract :*** "
 
-#Nom du fichier CSV source :
+# Nom du fichier CSV source :
 echo "*** Quel est le nom du fichier CSV source ? ***"
 read source
 
@@ -32,3 +35,9 @@ echo "*** Analyse des dataleaks avec Have I Been Pwned : ***"
 bash HIBP.sh > result.txt
 
 echo "*** Les résultats sont dans le fichier result.txt ***"
+
+# Copie des résultats vers le dossier total pour agréger les résultats
+echo "*** Copie des résultats vers le dossier total pour agréger les résultats ***"
+cat email.txt >> total/total_email.txt
+cat email_unqiue.txt >> total/total_email_unqiue.txt
+cat result.txt >> total/total_result.txt
