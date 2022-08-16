@@ -45,3 +45,10 @@ cut -d "," -f3 geo_result.txt > pays.txt
 
 #Calcule le nombre d'occurence de pays
 cat pays.txt | sort -k 1 | uniq -c
+
+#Copie des résultats vers le dossier total pour agréger les résultats
+echo "*** Copie des résultats vers le dossier total pour agréger les résultats ***"
+cat ip.txt >> total/total_ip.txt 
+cat geo_result.txt >> total/total_geo_result.txt
+cat ip_unique.txt >> total/total_ip_unique.txt
+cat pays.txt >> total/total_pays.txt
