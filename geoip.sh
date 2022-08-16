@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#Créer le répertoire OLD s'il n'existe pas
+# Créer les répertoires OLD et total s'ils n'existent pas
 mkdir -p OLD
+mkdir -p total
 
 echo "*** Copie des anciens fichiers dans le répertoire OLD ***"
 if [ -f ip.txt -a -f geo_result.txt -a -f ip_unique.txt -a -f pays.txt ]; then
