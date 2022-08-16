@@ -1,4 +1,8 @@
 #!/bin/bash
+
+#Créer le répertoire OLD s'il n'existe pas
+mkdir -p OLD
+
 echo "*** Copie des anciens fichiers dans le répertoire OLD ***"
 if [ -f ip.txt -a -f geo_result.txt -a -f ip_unique.txt -a -f pays.txt ]; then
 mv ip.txt OLD/ip.txt.$(date +%F_%R)
